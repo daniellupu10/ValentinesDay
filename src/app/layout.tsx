@@ -17,7 +17,7 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en">
-      <body className={`${inter.variable} ${playfair.variable} font-sans antialiased bg-black text-white selection:bg-purple-500 selection:text-white`}>
+      <body className={`${inter.variable} ${playfair.variable} font-sans antialiased bg-black text-white selection:bg-[#82783C] selection:text-white`}>
         <div className="aurora-gradient" />
         {children}
       </body>

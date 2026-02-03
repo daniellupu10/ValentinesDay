@@ -1,26 +1,97 @@
 @import "tailwindcss";
 
-:root {
-  --background: #ffffff;
-  --foreground: #171717;
+@theme {
+  --font-sans: var(--font-inter);
+  --font-serif: var(--font-playfair);
+
+  --color-brand-purple: #A855F7;
+  --color-brand-orange: #F97316;
+  --color-brand-yellow: #EAB308;
+
+  --animate-float: float 6s ease-in-out infinite;
 }
 
-@theme inline {
-  --color-background: var(--background);
-  --color-foreground: var(--foreground);
-  --font-sans: var(--font-geist-sans);
-  --font-mono: var(--font-geist-mono);
+@layer utilities {
+  .glass-card {
+    @apply bg-black/40 backdrop-blur-xl border border-white/10;
+    box-shadow: 0 0 40px rgba(0, 0, 0, 0.5);
+  }
+
+  .lovable-input {
+    @apply w-full bg-black/50 border border-white/20 rounded-lg px-4 py-3 text-white placeholder-white/40 focus:ring-2 focus:ring-white/20 focus:border-white/50 outline-none transition-all font-medium;
+  }
+
+  .lovable-button {
+    @apply px-6 py-3 rounded-lg font-bold transition-all active:scale-95;
+  }
+
+  .aurora-gradient {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    z-index: -1;
+    background-color: #080808;
+    background-image:
+      /* Grain Overlay */
+      url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.8' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)' opacity='0.08'/%3E%3C/svg%3E"),
+      /* Liquid Colors */
+      radial-gradient(circle at 10% 20%, rgba(130, 120, 60, 0.25), transparent 50%),
+      /* Olive Gold */
+      radial-gradient(circle at 80% 30%, rgba(184, 115, 51, 0.25), transparent 50%),
+      /* Copper */
+      radial-gradient(circle at 40% 70%, rgba(80, 90, 80, 0.3), transparent 50%),
+      /* Muted Green/Grey */
+      radial-gradient(circle at 90% 90%, rgba(100, 50, 30, 0.2), transparent 50%);
+    /* Rust */
+
+    /* Blend adjustments */
+    background-repeat: repeat, no-repeat, no-repeat, no-repeat, no-repeat;
+    background-size: 150px 150px, 150% 150%, 150% 150%, 150% 150%, 150% 150%;
+    /* High blur to merge them into a 'liquid' */
+    filter: contrast(110%) blur(0px);
+    /* Specific blur radius is risky on the whole container if content is inside? 
+       Wait, the div .aurora-gradient is separate in layout.tsx. So we can blur it heavily! 
+       Actually, blurring the NOISE looks bad. 
+       Let's put the colors in a pseudo-element or just rely on the gradient spread + radial feathering.
+       Standard radial gradients are already smooth. Let's just trust the 'transparent 50%' feathering.
+    */
+    animation: aurora-move 20s ease-in-out infinite alternate;
+  }
 }
 
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
+@keyframes float {
+
+  0%,
+  100% {
+    transform: translateY(0);
+  }
+
+  50% {
+    transform: translateY(-20px);
+  }
+}
+
+@keyframes aurora-move {
+  0% {
+    background-position: 0% 0%;
+    transform: scale(1);
+  }
+
+  50% {
+    background-position: 100% 100%;
+    transform: scale(1.1);
+  }
+
+  100% {
+    background-position: 0% 0%;
+    transform: scale(1);
   }
 }
 
 body {
-  background: var(--background);
-  color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
+  background-color: #030303;
+  /* Deeper black for Lovable vibe */
+  color: #ffffff;
 }

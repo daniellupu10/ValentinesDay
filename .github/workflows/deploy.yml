@@ -35,14 +35,19 @@ jobs:
         run: npm ci
 
       - name: Build with Next.js
-        run: npx next build
+        run: npm run build
         env:
           NEXT_PUBLIC_SUPABASE_URL: ${{ secrets.NEXT_PUBLIC_SUPABASE_URL }}
           NEXT_PUBLIC_SUPABASE_ANON_KEY: ${{ secrets.NEXT_PUBLIC_SUPABASE_ANON_KEY }}
 
+      - name: Debug Output
+        run: ls -R
+
       - name: Upload artifact
         uses: actions/upload-pages-artifact@v3
         with:
+          # If basePath is set, Next.js might export to out/basePath
+          # but we want to upload the root of the export.
           path: ./out
 
       - name: Deploy to GitHub Pages

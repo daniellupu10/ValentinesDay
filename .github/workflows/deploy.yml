@@ -26,11 +26,6 @@ jobs:
           node-version: "20"
           cache: "npm"
 
-      - name: Setup Pages
-        uses: actions/configure-pages@v4
-        with:
-          static_site_generator: next
-
       - name: Install dependencies
         run: npm ci
 
@@ -40,15 +35,16 @@ jobs:
           NEXT_PUBLIC_SUPABASE_URL: ${{ secrets.NEXT_PUBLIC_SUPABASE_URL }}
           NEXT_PUBLIC_SUPABASE_ANON_KEY: ${{ secrets.NEXT_PUBLIC_SUPABASE_ANON_KEY }}
 
-      - name: Debug Output
-        run: ls -R
+      - name: Verify Build
+        run: |
+          ls -R
+          if [ -d "out" ]; then echo "Found out folder"; else echo "OUT FOLDER MISSING"; fi
 
       - name: Upload artifact
         uses: actions/upload-pages-artifact@v3
         with:
-          # If basePath is set, Next.js might export to out/basePath
-          # but we want to upload the root of the export.
-          path: ./out
+          # Try using absolute path or double check relative
+          path: out
 
       - name: Deploy to GitHub Pages
         id: deployment

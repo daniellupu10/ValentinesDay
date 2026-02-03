@@ -5,10 +5,8 @@ const nextConfig: NextConfig = {
   images: {
     unoptimized: true,
   },
-  // Ensure the base path matches your GitHub repository name exactly
+  // We only need basePath for GitHub Pages sub-directories
   basePath: "/ValentinesDay",
-  // This helps Next.js find its JS/CSS assets on GitHub Pages
-  assetPrefix: "/ValentinesDay",
 };
 
 export default nextConfig;

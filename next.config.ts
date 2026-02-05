@@ -7,6 +7,8 @@ const nextConfig: NextConfig = {
   },
   // We only need basePath for GitHub Pages sub-directories
   basePath: "/ValentinesDay",
+  assetPrefix: "/ValentinesDay/",
+  trailingSlash: true,
 };
 
 export default nextConfig;

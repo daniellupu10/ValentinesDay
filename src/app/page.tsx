@@ -42,7 +42,7 @@ function ValentineView({ id }: { id: string }) {
   if (!request) return <div className="min-h-screen text-white flex items-center justify-center">{"Valentine not found 💔"}</div>;
 
   return (
-    <div className="z-10 max-w-4xl w-full">
+    <div className="z-10 max-w-4xl w-full text-center">
       <AnimatePresence mode="wait">
         {!accepted ? (
           <motion.div

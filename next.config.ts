@@ -5,9 +5,10 @@ const nextConfig: NextConfig = {
   images: {
     unoptimized: true,
   },
-  // We only need basePath for GitHub Pages sub-directories
-  basePath: "/ValentinesDay",
-  assetPrefix: "/ValentinesDay/",
+  // Since you are using a custom domain (belovable.online), 
+  // you must remove the sub-folder path so assets load from the root.
+  basePath: "",
+  assetPrefix: "",
   trailingSlash: true,
 };
 

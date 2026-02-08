@@ -6,8 +6,8 @@ const inter = Inter({ subsets: ["latin"], variable: "--font-inter" });
 const playfair = Playfair_Display({ subsets: ["latin"], variable: "--font-playfair" });
 
 export const metadata: Metadata = {
-  title: "Clyde Valentine",
-  description: "Ask your special someone.",
+  title: "BeLovable",
+  description: "Create the perfect, impossible-to-reject Valentine.",
 };
 
 export default function RootLayout({
